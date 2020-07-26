@@ -37,7 +37,21 @@ function compile (fileNames, options) {
   process.exit(exitCode)
 }
 
-compile(process.argv.slice(2), {
+const commandLine = ts.parseCommandLine(process.argv.slice(2))
+
+if (commandLine.errors.length > 0) {
+  commandLine.errors.forEach(x => console.log(x.messageText));
+  process.exit(1);
+}
+
+if (commandLine.options.help) {
+  console.log('Usage: TBD')
+  process.exit(0)
+}
+
+const options = {
+  ...(commandLine.options),
+
   // replicate tsc hardcoded values when using jsconfig.json file
   allowJs: true,
   maxNodeModuleJsDepth: 2,
@@ -48,8 +62,6 @@ compile(process.argv.slice(2), {
   // modes we want
   checkJs: true,
   moduleResolution: ts.ModuleResolutionKind.NodeJs,
+}
 
-  // not sure
-  target: ts.ScriptTarget.ES2015,
-  module: ts.ModuleKind.CommonJS
-})
+compile(commandLine.fileNames, options)
