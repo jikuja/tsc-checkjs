@@ -50,11 +50,14 @@ if (commandLine.options.help) {
 }
 
 const options = {
+  maxNodeModuleJsDepth: 2, // (1) and overrideable by user
+  target: ts.ScriptTarget.ES2018, // sane overrideable default
+
+  // include command line settings
   ...(commandLine.options),
 
-  // replicate tsc hardcoded values when using jsconfig.json file
+  // (1) replicate tsc hardcoded values when using `-p jsconfig.json`
   allowJs: true,
-  maxNodeModuleJsDepth: 2,
   allowSyntheticDefaultImports: true,
   skipLibCheck: true,
   noEmit: true,
