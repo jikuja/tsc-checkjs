@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "checkJs": true 
+  },
+  "include": ["index.js", "run/*.js", "tests/*.js"],
+  "exclude": ["node_modules"]
+}

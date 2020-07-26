@@ -1,0 +1,38 @@
+{
+  "name": "tsc-checkjs",
+  "version": "1.0.0",
+  "description": "Javascript typechecker PoC",
+  "main": "index.js",
+  "scripts": {
+    "typecheck": "npx tsc -p jsconfig.json",
+    "strictTypecheck": "npx tsc -p jsconfig.json --noImplicitAny",
+    "tsc-checkjs": "bin/run.js index.js tests/*.js  bin/*.js",
+    "standard": "standard",
+    "eslint": "eslint index.js tests/*.js  bin/*.js",
+    "lint": "npm run standard && npm run eslint",
+    "test": "tap tests/*.js"
+  },
+  "author": "Janne Kujanpää <jikuja@iki.fi>",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.26",
+    "cross-spawn": "^7.0.3",
+    "eslint": "^7.5.0",
+    "standard": "^14.3.4",
+    "tap": "^14.10.8"
+  },
+  "bin": {
+    "tsc-checkjs": "bin/run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jikuja/tsc-checkjs.git"
+  },
+  "homepage": "https://github.com/jikuja/tsc-checkjs#readme",
+  "engines": {
+    "node": ">=10"
+  }
+}
