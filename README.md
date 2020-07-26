@@ -70,13 +70,11 @@ Current code is modified from Typescript API example(2).
 
 ## Future plans
 
-* Rewrite logic of status code
 * Proper CLI with arguments
   * configurable ignore string(s)
-  * pass compiler options to compiler
-  * reporter selection
+  * pass compiler options to compiler (preliminary work done, document)
+  * reporter selection. (works automatically now)
 * [jt]sconfig.json support
-* CI to test windows
 
 ## License
 

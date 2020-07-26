@@ -30,7 +30,7 @@ function compile (fileNames, options) {
   const output = process.stdout.isTTY ? ts.formatDiagnosticsWithColorAndContext(filtered, sys) : ts.formatDiagnostics(filtered, sys)
   console.log(output)
 
-  const exitCode = emitResult.emitSkipped ? 1 : 0
+  const exitCode = filtered.length > 0 ? 1 : 0
   console.log(`Found ${filtered.length} errors.`)
   console.log(`Filtered out ${allDiagnostics.length - filtered.length} error entries.`)
   console.log(`Process exiting with code '${exitCode}'.`)

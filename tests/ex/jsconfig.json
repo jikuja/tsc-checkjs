@@ -3,6 +3,6 @@
     "noEmit": true,
     "checkJs": true 
   },
-  "include": ["index.js", "src/*.js", "tests/*.js"],
+  "include": ["two-errors.js"],
   "exclude": ["node_modules"]
 }
