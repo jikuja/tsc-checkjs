@@ -1,5 +1,9 @@
 # tsc-checkjs
 
+![Travis (.org)](https://img.shields.io/travis/jikuja/tsc-checkjs)
+![npm](https://img.shields.io/npm/v/tsc-checkjs)
+![GitHub](https://img.shields.io/github/license/jikuja/tsc-checkjs)
+
 Tsc-checkjs is proof-of-concept Javascript typechecker using Typescript compiler API to ignore errors generated fom dependencies.
 
 Following sections explain installation, usage and reasoning for writing a new checker.
@@ -8,7 +12,7 @@ Following sections explain installation, usage and reasoning for writing a new c
 
 Install the package
 
-* npm install --save-dev tsc-checkjs
+* `npm install --save-dev tsc-checkjs`
 
 ## Usage
 
@@ -87,4 +91,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## References
 
 (1) https://github.com/microsoft/TypeScript/wiki/FAQ#why-is-a-file-in-the-exclude-list-still-picked-up-by-the-compiler
+
 (2) https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API
