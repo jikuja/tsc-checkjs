@@ -40,8 +40,8 @@ function compile (fileNames, options) {
 const commandLine = ts.parseCommandLine(process.argv.slice(2))
 
 if (commandLine.errors.length > 0) {
-  commandLine.errors.forEach(x => console.log(x.messageText));
-  process.exit(1);
+  commandLine.errors.forEach(x => console.log(x.messageText))
+  process.exit(1)
 }
 
 if (commandLine.options.help) {
@@ -61,7 +61,7 @@ const options = {
 
   // modes we want
   checkJs: true,
-  moduleResolution: ts.ModuleResolutionKind.NodeJs,
+  moduleResolution: ts.ModuleResolutionKind.NodeJs
 }
 
 compile(commandLine.fileNames, options)

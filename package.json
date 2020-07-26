@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "typecheck": "npx tsc -p jsconfig.json",
-    "strictTypecheck": "npx tsc -p jsconfig.json --noImplicitAny",
+    "typecheck-strict": "npx tsc -p jsconfig.json --noImplicitAny",
     "tsc-checkjs": "bin/run.js index.js tests/*.js  bin/*.js",
-    "standard": "standard",
-    "eslint": "eslint index.js tests/*.js  bin/*.js",
+    "tsc-checkjs-strict": "bin/run.js --noImplicitAny index.js tests/*.js  bin/*.js",
+    "standard": "standard *.js tests/*.js  bin/*.js",
+    "eslint": "eslint *.js tests/*.js  bin/*.js",
     "lint": "npm run standard && npm run eslint",
     "test": "tap tests/*.js"
   },
