@@ -11,7 +11,7 @@
     "standard": "standard *.js tests/*.js  bin/*.js",
     "eslint": "eslint *.js tests/*.js  bin/*.js",
     "lint": "npm run standard && npm run eslint",
-    "test": "tap tests/*.js"
+    "test": "tap --100 tests/*.js"
   },
   "author": "Janne Kujanpää <jikuja@iki.fi>",
   "license": "MIT",
