@@ -1,4 +1,12 @@
 const ts = require('typescript')
+const glob = require('glob')
+const debug = require('debug')('tsc-checkjs')
+
+const IGNORED_DIRECTORIES = [
+  'node_modules'
+]
+
+const IGNORED_DIRECTORIES_GLOB = IGNORED_DIRECTORIES.map((x) => x + '/**')
 
 /**
  * @param {readonly string[]} fileNames
@@ -22,13 +30,16 @@ function compile (fileNames, options) {
   // content must be filtered or function rewrite
   const filtered = allDiagnostics.filter((diag) => {
     if (diag.file) {
+      // TODO: more ignores from command line
       return !diag.file.fileName.match(/node_modules/)
     } else {
       return true
     }
   })
-  // TODO: use options.pretty to check user supplied reporting formatter
-  const output = process.stdout.isTTY ? ts.formatDiagnosticsWithColorAndContext(filtered, sys) : ts.formatDiagnostics(filtered, sys)
+
+  /* istanbul ignore next */
+  const pretty = options.pretty ? true : (process.stdout.isTTY ? true : false)
+  const output = pretty ? ts.formatDiagnosticsWithColorAndContext(filtered, sys) : ts.formatDiagnostics(filtered, sys)
   console.log(output)
 
   const exitCode = filtered.length > 0 ? 1 : 0
@@ -38,7 +49,29 @@ function compile (fileNames, options) {
   process.exit(exitCode)
 }
 
+/**
+ * @param {string[]} files
+ */
+function globFiles (files) {
+  debug('files', files)
+  const globbedfiles =  files.reduce((acc, f) => {
+    return acc.concat(glob.sync(f, { nonull: true, ignore: IGNORED_DIRECTORIES_GLOB }))
+  }, [])
+  debug('globbedfiles', globbedfiles)
+
+  return Array.from(new Set(globbedfiles))
+}
+
+ts.optionDeclarations.push(
+  {
+    name: "skipGlob",
+    //shortName: "v",
+    type: "boolean",
+  }
+)
+
 const commandLine = ts.parseCommandLine(process.argv.slice(2))
+debug('commandLine', commandLine)
 
 if (commandLine.errors.length > 0) {
   commandLine.errors.forEach(x => console.log(x.messageText))
@@ -70,4 +103,4 @@ const options = {
   moduleResolution: ts.ModuleResolutionKind.NodeJs
 }
 
-compile(commandLine.fileNames, options)
+compile(options.skipGlob ? commandLine.fileNames : globFiles(commandLine.fileNames), options)
