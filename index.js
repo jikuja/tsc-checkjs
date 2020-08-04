@@ -27,6 +27,7 @@ function compile (fileNames, options) {
       return true
     }
   })
+  // TODO: use options.pretty to check user supplied reporting formatter
   const output = process.stdout.isTTY ? ts.formatDiagnosticsWithColorAndContext(filtered, sys) : ts.formatDiagnostics(filtered, sys)
   console.log(output)
 
@@ -51,7 +52,9 @@ if (commandLine.options.help) {
 
 const options = {
   maxNodeModuleJsDepth: 2, // (1) and overrideable by user
-  target: ts.ScriptTarget.ES2018, // sane overrideable default
+ 
+  // Using <ES6 or ES5 makes tsc to emit e.g. TS2569 and TS1056
+  target: ts.ScriptTarget.ES2018,  // sane overrideable default
 
   // include command line settings
   ...(commandLine.options),
