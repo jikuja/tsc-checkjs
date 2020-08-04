@@ -77,6 +77,10 @@ Error caused by `node_modules/tsc-checkjs-broken-dep/index.js:3:5` is being filt
 
 Current code is modified from Typescript API example(2).
 
+## Supported command line parameters
+* `--pretty`
+* `--skipGlob`
+
 ## Future plans
 
 * Proper CLI with arguments
