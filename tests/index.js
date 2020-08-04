@@ -1,6 +1,8 @@
 const tap = require('tap')
 const spawn = require('cross-spawn')
 
+tap.setTimeout(60000)
+
 tap.test('typescript compiler', {}, (ct) => {
   const p = spawn.sync('../../node_modules/.bin/tsc', ['--noImplicitAny', '-p', 'jsconfig.json'], {
     stdio: 'pipe',
