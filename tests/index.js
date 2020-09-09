@@ -9,7 +9,7 @@ tap.test('typescript compiler', {}, (ct) => {
     cwd: 'tests/ex'
   })
 
-  ct.equal(p.status, 1, 'returns failed statuscode')
+  ct.notEquals(p.status, 0, 'returns failed statuscode')
   const stdout = p.stdout.toString()
   ct.contains(stdout, 'node_modules/tsc-checkjs-broken-dep/index.js', 'has node module error')
   ct.end()
